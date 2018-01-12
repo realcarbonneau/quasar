@@ -5,7 +5,7 @@
         <div v-for="outline in options" :key="outline" v-if="!(push || flat) || !outline">
           <div v-for="rounded in options" :key="rounded">
             <div v-for="size in sizes" :key="size" class="q-ma-sm">
-              <div v-for="disable in options.reverse" :key="disable">
+              <div v-for="disable in options.reverse()" :key="disable">
                 <p class="caption">
                   {{push ? 'push ' : ''}}
                   {{rounded ? 'rounded ' : ''}}
