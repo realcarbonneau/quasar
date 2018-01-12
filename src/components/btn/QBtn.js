@@ -35,6 +35,58 @@ export default {
     },
     hasNoRepeat () {
       return this.isDisabled || !this.repeatTimeout || this.loader !== false
+    },
+    on () {
+      const on = this.hasNoRepeat || this.$slots.loading
+        ? {}
+        : {
+          mousedown: this.startRepeat,
+          touchstart: this.startRepeat,
+          mouseup: this.endRepeat,
+          mouseleave: this.endRepeat,
+          touchend: this.endRepeat
+        }
+      on.click = this.click
+      return on
+    },
+    buttonProperties () {
+      return {
+        staticClass: 'q-btn row inline flex-center relative-position',
+        'class': this.classes,
+        style: this.style,
+        on: this.on,
+        directives: this.hasRipple
+          ? [{
+            name: 'ripple',
+            value: true
+          }]
+          : null
+      }
+    },
+    divPerctProperties () {
+      return {
+        staticClass: 'q-btn-progress absolute-full',
+        'class': { 'q-btn-dark-progress': this.darkPercentage },
+        style: { width: this.width }
+      }
+    },
+    leftIconProperties () {
+      return {
+        'class': { 'on-left': this.label && this.isRectangle },
+        props: { name: this.icon }
+      }
+    },
+    rightIconProperties () {
+      return {
+        staticClass: 'on-right',
+        props: { name: this.iconRight }
+      }
+    },
+    divInnerProperties () {
+      return {
+        staticClass: 'q-btn-inner row col items-center',
+        'class': this.innerClasses
+      }
     }
   },
   methods: {
@@ -95,52 +147,17 @@ export default {
     clearTimeout(this.timer)
   },
   render (h) {
-    const on = this.hasNoRepeat || this.$slots.loading
-      ? {}
-      : {
-        mousedown: this.startRepeat,
-        touchstart: this.startRepeat,
-        mouseup: this.endRepeat,
-        mouseleave: this.endRepeat,
-        touchend: this.endRepeat
-      }
-
-    on.click = this.click
-
-    return h('button', {
-      staticClass: 'q-btn row inline flex-center relative-position',
-      'class': this.classes,
-      style: this.style,
-      on,
-      directives: this.hasRipple
-        ? [{
-          name: 'ripple',
-          value: true
-        }]
-        : null
-    }, [
+    return h('button', this.buttonProperties, [
       h('div', { staticClass: 'q-focus-helper' }),
-
       this.loading && this.hasPercentage
-        ? h('div', {
-          staticClass: 'q-btn-progress absolute-full',
-          'class': { 'q-btn-dark-progress': this.darkPercentage },
-          style: { width: this.width }
-        })
+        ? h('div', this.divPerctProperties)
         : null,
 
-      h('div', {
-        staticClass: 'q-btn-inner row col items-center',
-        'class': this.innerClasses
-      },
-      this.loading
+      h('div', this.divInnerProperties, this.loading
         ? [ this.$slots.loading || h(QSpinner) ]
         : [
           this.icon
-            ? h('q-icon', {
-              'class': { 'on-left': this.label && this.isRectangle },
-              props: { name: this.icon }
-            })
+            ? h('q-icon', this.leftIconProperties)
             : null,
 
           this.label && this.isRectangle ? h('div', [ this.label ]) : null,
@@ -148,10 +165,7 @@ export default {
           this.$slots.default,
 
           this.iconRight && this.isRectangle
-            ? h('q-icon', {
-              staticClass: 'on-right',
-              props: { name: this.iconRight }
-            })
+            ? h('q-icon', this.rightIconProperties)
             : null
         ]
       )

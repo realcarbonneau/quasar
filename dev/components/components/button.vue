@@ -85,7 +85,7 @@
         <q-btn icon="edit" icon-right="alarm" label="Icoon" />
       </p>
 
-      <p class="group">
+      <p class="group">click
         <q-btn loader @click="simulateProgress" label="Button">
           <q-spinner-oval slot="loading" />
         </q-btn>
@@ -149,6 +149,7 @@
       </p>
 
       <p class="group">
+        click
         <q-btn loader :percentage="percentage" color="primary" @click="startProgress">
           Btn with progress
           <span slot="loading" class="row items-center">
