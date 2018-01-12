@@ -79,8 +79,32 @@ export default {
     return {
       model: '',
       options: [true, false],
-      sizes: ['sm', 'md', 'lg']
+      sizes: ['sm', 'md', 'lg'],
+      start: new Date(),
+      end: 0,
+      elapsed: 0
     }
+  },
+  /*
+  beforeCreate () {
+    debugger
+    this.start = new Date()
+    console.log('Start create:' + this.start)
+  },
+  */
+  mounted () {
+    this.end = new Date()
+    this.elapsed = this.end - this.start
+    console.log('End Create:' + this.end + ' Elapsed:' + this.elapsed + 'ms')
+  },
+  beforeUpdate () {
+    this.start = new Date()
+    console.log('Start Update:' + this.start)
+  },
+  updated () {
+    this.end = new Date()
+    this.elapsed = this.end - this.start
+    console.log('End Update:' + this.end + ' Elapsed:' + this.elapsed + 'ms')
   }
 }
 </script>

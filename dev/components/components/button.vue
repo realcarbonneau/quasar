@@ -420,7 +420,10 @@ export default {
       ],
       extras: ['flat', 'outline', 'round', 'rounded', 'push', 'glossy'],
       done: [],
-      percentage: 0
+      percentage: 0,
+      start: 0,
+      end: 0,
+      elapsed: 0
     }
   },
   methods: {
@@ -446,6 +449,15 @@ export default {
   },
   beforeDestroy () {
     clearInterval(this.interval)
+  },
+  created () {
+    this.start = new Date()
+    console.log('Start:' + this.start)
+  },
+  ready () {
+    this.end = new Date()
+    this.elapsed = this.end - this.start
+    console.log('End:' + this.end + ' Elapsed:' + this.elapsed)
   }
 }
 </script>
