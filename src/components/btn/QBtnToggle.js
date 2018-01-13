@@ -17,6 +17,37 @@ export default {
       required: true
     }
   },
+  computed: {
+    buttonProperties () {
+      // console.log('buttonProperties')
+      return {
+        staticClass: 'q-btn q-btn-toggle row inline flex-center relative-position',
+        'class': this.classes,
+        style: this.style,
+        on: { click: this.click },
+        directives: this.hasRipple
+          ? [{
+            name: 'ripple',
+            value: true
+          }]
+          : null
+      }
+    },
+    rightIconProperties () {
+      // console.log('rightIconProperties')
+      return {
+        staticClass: 'on-right',
+        props: { name: this.iconRight }
+      }
+    },
+    leftIconProperties () {
+      // console.log('leftIconProperties')
+      return {
+        'class': { 'on-left': this.label && this.isRectangle },
+        props: { name: this.icon }
+      }
+    }
+  },
   methods: {
     click (e) {
       clearTimeout(this.timer)
@@ -41,29 +72,14 @@ export default {
     }
   },
   render (h) {
-    return h('button', {
-      staticClass: 'q-btn q-btn-toggle row inline flex-center relative-position',
-      'class': this.classes,
-      style: this.style,
-      on: { click: this.click },
-      directives: this.hasRipple
-        ? [{
-          name: 'ripple',
-          value: true
-        }]
-        : null
-    }, [
+    return h('button', this.buttonProperties, [
       h('div', { staticClass: 'q-focus-helper' }),
-
       h('div', {
         staticClass: 'q-btn-inner row col items-center',
         'class': this.innerClasses
       }, [
         this.icon
-          ? h('q-icon', {
-            'class': { 'on-left': this.label && this.isRectangle },
-            props: { name: this.icon }
-          })
+          ? h('q-icon', this.leftIconProperties)
           : null,
 
         this.label && this.isRectangle ? h('div', [ this.label ]) : null,
@@ -71,10 +87,7 @@ export default {
         this.$slots.default,
 
         this.iconRight && this.isRectangle
-          ? h('q-icon', {
-            staticClass: 'on-right',
-            props: { name: this.iconRight }
-          })
+          ? h('q-icon', this.rightIconProperties)
           : null
       ])
     ])

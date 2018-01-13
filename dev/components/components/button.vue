@@ -408,6 +408,9 @@
 </template>
 
 <script>
+// non-reactive
+var start = new Date()
+
 export default {
   data () {
     return {
@@ -450,14 +453,19 @@ export default {
   beforeDestroy () {
     clearInterval(this.interval)
   },
-  created () {
-    this.start = new Date()
-    console.log('Start:' + this.start)
+  mounted () {
+    let end = new Date()
+    let elapsed = end - start
+    console.log('End Create Compute:' + end + ' Elapsed:' + elapsed + 'ms')
   },
-  ready () {
-    this.end = new Date()
-    this.elapsed = this.end - this.start
-    console.log('End:' + this.end + ' Elapsed:' + this.elapsed)
+  beforeUpdate () {
+    start = new Date()
+    // console.log('Start Update:' + start)
+  },
+  updated () {
+    let end = new Date()
+    let elapsed = end - start
+    console.log('End Update Compute:' + end + ' Elapsed:' + elapsed + 'ms')
   }
 }
 </script>

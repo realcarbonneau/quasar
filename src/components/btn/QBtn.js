@@ -50,6 +50,7 @@ export default {
       return on
     },
     buttonProperties () {
+      // console.log('buttonProperties')
       return {
         staticClass: 'q-btn row inline flex-center relative-position',
         'class': this.classes,
@@ -64,6 +65,7 @@ export default {
       }
     },
     divPerctProperties () {
+      // console.log('divPerctProperties')
       return {
         staticClass: 'q-btn-progress absolute-full',
         'class': { 'q-btn-dark-progress': this.darkPercentage },
@@ -71,18 +73,21 @@ export default {
       }
     },
     leftIconProperties () {
+      // console.log('leftIconProperties')
       return {
         'class': { 'on-left': this.label && this.isRectangle },
         props: { name: this.icon }
       }
     },
     rightIconProperties () {
+      // console.log('rightIconProperties')
       return {
         staticClass: 'on-right',
         props: { name: this.iconRight }
       }
     },
     divInnerProperties () {
+      // console.log('divInnerProperties')
       return {
         staticClass: 'q-btn-inner row col items-center',
         'class': this.innerClasses
@@ -147,6 +152,7 @@ export default {
     clearTimeout(this.timer)
   },
   render (h) {
+    // console.log('render')
     return h('button', this.buttonProperties, [
       h('div', { staticClass: 'q-focus-helper' }),
       this.loading && this.hasPercentage

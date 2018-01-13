@@ -98,16 +98,16 @@ export default {
   mounted () {
     let end = new Date()
     let elapsed = end - start
-    console.log('End Create:' + end + ' Elapsed:' + elapsed + 'ms')
+    console.log('End Create Compute:' + end + ' Elapsed:' + elapsed + 'ms')
   },
   beforeUpdate () {
     start = new Date()
-    console.log('Start Update:' + start)
+    // console.log('Start Update:' + start)
   },
   updated () {
     let end = new Date()
     let elapsed = end - start
-    console.log('End Update:' + end + ' Elapsed:' + elapsed + 'ms')
+    console.log('End Update Compute:' + end + ' Elapsed:' + elapsed + 'ms')
   }
 }
 </script>
