@@ -102,12 +102,12 @@ export default {
   },
   beforeUpdate () {
     start = new Date()
-    console.log('Start Update:' + start)
+    // console.log('Start Update:' + start)
   },
   updated () {
     let end = new Date()
     let elapsed = end - start
-    console.log('End Update:' + end + ' Elapsed:' + elapsed + 'ms')
+    console.log('End Update Baseline:' + end + ' Elapsed:' + elapsed + 'ms')
   }
 }
 </script>
