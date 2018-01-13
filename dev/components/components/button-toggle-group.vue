@@ -11,59 +11,62 @@
           <div v-for="glossy in options" :key="glossy" v-if="!(push || flat) || !outline">
             <div v-for="rounded in options" :key="rounded">
               <div v-for="size in sizes" :key="size" class="q-ma-sm">
-                <p class="caption">
-                  {{push ? 'push ' : ''}}
-                  {{rounded ? 'rounded ' : ''}}
-                  {{outline ? 'outline ' : ''}}
-                  {{flat ? 'flat ' : ''}}
-                  {{glossy ? 'glossy ' : ''}}
-                  {{size}}
-                </p>
+                <div v-for="disable in options.slice().reverse()" :key="disable">
+                  <p class="caption">
+                    {{push ? 'push ' : ''}}
+                    {{rounded ? 'rounded ' : ''}}
+                    {{outline ? 'outline ' : ''}}
+                    {{flat ? 'flat ' : ''}}
+                    {{glossy ? 'glossy ' : ''}}
+                    {{size}}
+                    {{disable ? 'disable ' : ''}}
+                  </p>
 
-                <q-btn-toggle-group v-model="model" toggle-color="primary"
-                  :push="push" :flat="flat" :outline="outline" :glossy="glossy" :rounded="rounded" :size="size"
-                  :options="[
-                    {label: 'One', value: 'one'},
-                    {label: 'Two', value: 'two'},
-                    {label: 'Three', value: 'three'}
-                  ]"
-                />
+                  <q-btn-toggle-group v-model="model" toggle-color="primary"
+                    :push="push" :flat="flat" :outline="outline" :glossy="glossy" :rounded="rounded" :size="size" :disable="disable"
+                    :options="[
+                      {label: 'One', value: 'one'},
+                      {label: 'Two', value: 'two'},
+                      {label: 'Three', value: 'three'}
+                    ]"
+                  />
 
-                <q-btn-toggle-group v-model="model" toggle-color="primary"
-                  :push="push" :flat="flat" :outline="outline" :glossy="glossy" :rounded="rounded" :size="size"
-                  :options="[
-                    {label: 'One', icon: 'filter_1', value: 'one'},
-                    {label: 'Two', icon: 'filter_2', value: 'two'},
-                    {label: 'Three', icon: 'filter_3', value: 'three'}
-                  ]"
-                />
+                  <q-btn-toggle-group v-model="model" toggle-color="primary"
+                    :push="push" :flat="flat" :outline="outline" :glossy="glossy" :rounded="rounded" :size="size" :disable="disable"
+                    :options="[
+                      {label: 'One', icon: 'filter_1', value: 'one'},
+                      {label: 'Two', icon: 'filter_2', value: 'two'},
+                      {label: 'Three', icon: 'filter_3', value: 'three'}
+                    ]"
+                  />
 
-                <q-btn-toggle-group v-model="model" toggle-color="primary"
-                  :push="push" :flat="flat" :outline="outline" :glossy="glossy" :rounded="rounded" :size="size"
-                  :options="[
-                    {icon: 'filter_1', value: 'one'},
-                    {icon: 'filter_2', value: 'two'},
-                    {icon: 'filter_3', value: 'three'}
-                  ]"
-                />
+                  <q-btn-toggle-group v-model="model" toggle-color="primary"
+                    :push="push" :flat="flat" :outline="outline" :glossy="glossy" :rounded="rounded" :size="size" :disable="disable"
+                    :options="[
+                      {icon: 'filter_1', value: 'one'},
+                      {icon: 'filter_2', value: 'two'},
+                      {icon: 'filter_3', value: 'three'}
+                    ]"
+                  />
 
-                <q-btn-toggle-group v-model="model" toggle-color="primary"
-                  :push="push" :flat="flat" :outline="outline" :glossy="glossy" :rounded="rounded" :size="size"
-                  :options="[
-                    {label: 'One', iconRight: 'filter_1', value: 'one'},
-                    {label: 'Two', iconRight: 'filter_2', value: 'two'},
-                    {label: 'Three', iconRight: 'filter_3', value: 'three'}
-                  ]"
-                />
+                  <q-btn-toggle-group v-model="model" toggle-color="primary"
+                    :push="push" :flat="flat" :outline="outline" :glossy="glossy" :rounded="rounded" :size="size" :disable="disable"
+                    :options="[
+                      {label: 'One', iconRight: 'filter_1', value: 'one'},
+                      {label: 'Two', iconRight: 'filter_2', value: 'two'},
+                      {label: 'Three', iconRight: 'filter_3', value: 'three'}
+                    ]"
+                  />
 
-                <q-btn-toggle-group v-model="model" toggle-color="primary"
-                  :push="push" :flat="flat" :outline="outline" :glossy="glossy" :rounded="rounded" :size="size"
-                  :options="[
-                    {label: 'One', value: 'one'},
-                    {label: 'Two', toggleColor: 'yellow', value: 'two'},
-                    {label: 'Three', toggleColor: 'red', value: 'three'}
-                  ]"
-                />
+                  <q-btn-toggle-group v-model="model" toggle-color="primary"
+                    :push="push" :flat="flat" :outline="outline" :glossy="glossy" :rounded="rounded" :size="size" :disable="disable"
+                    :options="[
+                      {label: 'One', value: 'one'},
+                      {label: 'Two', toggleColor: 'yellow', value: 'two'},
+                      {label: 'Three', toggleColor: 'red', value: 'three'}
+                    ]"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -74,34 +77,36 @@
 </template>
 
 <script>
+// non-reactive
+var start = new Date()
+
 export default {
   data () {
     return {
-      model: '',
+      model: 'one',
       options: [true, false],
-      sizes: ['sm', 'md', 'lg'],
-      start: new Date()
+      sizes: ['sm', 'md', 'lg']
     }
   },
   /*
   beforeCreate () {
     debugger
-    this.start = new Date()
-    console.log('Start create:' + this.start)
+    start = new Date()
+    console.log('Start create:' + start)
   },
   */
   mounted () {
     let end = new Date()
-    let elapsed = end - this.start
+    let elapsed = end - start
     console.log('End Create:' + end + ' Elapsed:' + elapsed + 'ms')
   },
   beforeUpdate () {
-    this.start = new Date()
-    console.log('Start Update:' + this.start)
+    start = new Date()
+    console.log('Start Update:' + start)
   },
   updated () {
     let end = new Date()
-    let elapsed = end - this.start
+    let elapsed = end - start
     console.log('End Update:' + end + ' Elapsed:' + elapsed + 'ms')
   }
 }
