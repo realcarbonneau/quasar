@@ -149,6 +149,7 @@
       </p>
 
       <p class="group">
+        Click for reactive
         <q-btn loader :percentage="percentage" color="primary" @click="startProgress">
           Btn with progress
           <span slot="loading" class="row items-center">
@@ -407,6 +408,9 @@
 </template>
 
 <script>
+// non-reactive
+var start = new Date()
+
 export default {
   data () {
     return {
@@ -445,6 +449,20 @@ export default {
   },
   beforeDestroy () {
     clearInterval(this.interval)
+  },
+  mounted () {
+    let end = new Date()
+    let elapsed = end - start
+    console.log('End Create Baseline:' + end + ' Elapsed:' + elapsed + 'ms')
+  },
+  beforeUpdate () {
+    start = new Date()
+    // console.log('Start Update:' + start)
+  },
+  updated () {
+    let end = new Date()
+    let elapsed = end - start
+    console.log('End Update Baseline:' + end + ' Elapsed:' + elapsed + 'ms')
   }
 }
 </script>

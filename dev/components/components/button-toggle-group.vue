@@ -98,7 +98,7 @@ export default {
   mounted () {
     let end = new Date()
     let elapsed = end - start
-    console.log('End Create:' + end + ' Elapsed:' + elapsed + 'ms')
+    console.log('End Create Baseline:' + end + ' Elapsed:' + elapsed + 'ms')
   },
   beforeUpdate () {
     start = new Date()
