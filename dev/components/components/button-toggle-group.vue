@@ -80,9 +80,7 @@ export default {
       model: '',
       options: [true, false],
       sizes: ['sm', 'md', 'lg'],
-      start: new Date(),
-      end: 0,
-      elapsed: 0
+      start: new Date()
     }
   },
   /*
@@ -93,18 +91,18 @@ export default {
   },
   */
   mounted () {
-    this.end = new Date()
-    this.elapsed = this.end - this.start
-    console.log('End Create:' + this.end + ' Elapsed:' + this.elapsed + 'ms')
+    let end = new Date()
+    let elapsed = end - this.start
+    console.log('End Create:' + end + ' Elapsed:' + elapsed + 'ms')
   },
   beforeUpdate () {
     this.start = new Date()
     console.log('Start Update:' + this.start)
   },
   updated () {
-    this.end = new Date()
-    this.elapsed = this.end - this.start
-    console.log('End Update:' + this.end + ' Elapsed:' + this.elapsed + 'ms')
+    let end = new Date()
+    let elapsed = end - this.start
+    console.log('End Update:' + end + ' Elapsed:' + elapsed + 'ms')
   }
 }
 </script>
