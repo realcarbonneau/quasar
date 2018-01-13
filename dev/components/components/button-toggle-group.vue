@@ -92,7 +92,7 @@ export default {
   beforeCreate () {
     debugger
     start = new Date()
-    console.log('Start create:' + this.start)
+    console.log('Start create:' + start)
   },
   */
   mounted () {
@@ -102,7 +102,7 @@ export default {
   },
   beforeUpdate () {
     start = new Date()
-    console.log('Start Update:' + this.start)
+    console.log('Start Update:' + start)
   },
   updated () {
     let end = new Date()
