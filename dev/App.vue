@@ -1,7 +1,9 @@
 <template>
   <div class="q-app">
-    <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut" mode="out-in" :duration="300" @leave="resetScroll">
-      <router-view></router-view>
+    <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut" mode="out-in" :duration="300">
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
     </transition>
     <q-ajax-bar ref="bar" />
     <div
@@ -65,13 +67,6 @@ export default {
     window.bar = this.$refs.bar
     if (this.$q.platform.is.cordova) {
       console.log('on CORDOVA')
-    }
-  },
-  methods: {
-    resetScroll (el, done) {
-      document.documentElement.scrollTop = 0
-      document.body.scrollTop = 0
-      done()
     }
   }
 }
