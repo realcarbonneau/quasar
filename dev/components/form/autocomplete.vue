@@ -103,6 +103,7 @@ function getRandomSecondLabel () {
   }
 }
 function parseCountries () {
+  console.log(countries)
   return countries.map(country => {
     return {
       label: country,
@@ -125,9 +126,17 @@ export default {
   },
   methods: {
     search (terms, done) {
+      debugger
+      console.log(parseCountries())
+      console.log(terms)
+      let results = filter(terms, {field: 'value', list: parseCountries()})
+      console.log(results)
+      // done(results)
+      /*
       setTimeout(() => {
         done(filter(terms, {field: 'value', list: parseCountries()}))
       }, 1000)
+      */
     },
     selected (item) {
       this.$q.notify(`Selected suggestion ${JSON.stringify(item.label)}`)
