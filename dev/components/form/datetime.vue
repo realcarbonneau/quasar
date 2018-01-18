@@ -80,16 +80,6 @@
       <p class="caption">Default Selection</p>
       <q-datetime v-model="model" :default-selection="defaultSelection" type="datetime" />
       <q-datetime v-model="model" :default-selection="defaultSelection" type="time" />
-
-      <p class="caption">With explicit popover</p>
-      <q-datetime v-model="model" popover type="date"     float-label="Pick Date" />
-      <q-datetime v-model="model" popover type="time"     float-label="Pick Time" />
-      <q-datetime v-model="model" popover type="datetime" float-label="Pick DateTime" />
-      
-      <p class="caption">With explicit modal</p>
-      <q-datetime v-model="model" modal type="date"     float-label="Pick Date" />
-      <q-datetime v-model="model" modal type="time"     float-label="Pick Time" />
-      <q-datetime v-model="model" modal type="datetime" float-label="Pick DateTime" />
       
       <p class="caption">With Label</p>
       <q-datetime v-model="model" type="date" label="Pick Date" />
@@ -190,6 +180,18 @@
       <q-datetime-picker readonly v-model="model" type="datetime" />
       <p class="caption">Min & Max</p>
       <q-datetime-picker type="datetime" v-model="minMaxModel" :min="min" :max="max" />
+      
+      <p class="caption">Dynamic Tests {{ keyIndex = 0 }}</p>
+      <template v-for="displayMode in displayModes">
+        <template v-for="type in types">
+          <q-datetime 
+            :key="keyIndex += 1"
+            v-model="model" 
+            v-bind="options(displayMode, type)"  
+            :float-label="label(displayMode, type)"  /> {{ keyIndex }}
+        </template>
+      </template>
+      
     </div>
   </div>
 </template>
@@ -212,7 +214,10 @@ export default {
       minMaxModel: date.formatDate(day),
 
       min: date.subtractFromDate(day, {days: 5}),
-      max: date.addToDate(day, {days: 4, month: 1, minutes: 10})
+      max: date.addToDate(day, {days: 4, month: 1, minutes: 10}),
+      keyIndex: 0,
+      displayModes: ['', 'popover', 'modal'],
+      types: ['date', 'time', 'datetime']
     }
   },
   computed: {
@@ -223,6 +228,17 @@ export default {
   methods: {
     log (name, data) {
       console.log(name, JSON.stringify(data))
+    },
+    options (displayMode, type) {
+      let opt = []
+      if (displayMode) opt.push(displayMode)
+      opt.push({'type': type})
+      debugger
+      return opt
+    },
+    label (displayMode, type) {
+      debugger
+      return 'Display Mode:' + displayMode + ', Type:' + type
     }
   }
 }

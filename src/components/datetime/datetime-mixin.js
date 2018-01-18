@@ -87,6 +87,10 @@ export default {
 
     editable () {
       return !this.disable && !this.readonly
+    },
+    isClearable () {
+      debugger
+      return this.editable && this.clearable && this.actualValue.length
     }
   },
 

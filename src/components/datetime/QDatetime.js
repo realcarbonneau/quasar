@@ -88,9 +88,7 @@ export default {
       }
       // Backspace key
       else if (e.which === 8 || e.keyCode === 8) {
-        if (this.editable && this.clearable && this.actualValue.length) {
-          this.clear()
-        }
+        if (this.isClearable) this.clear()
       }
     },
     __onFocus () {
@@ -272,7 +270,7 @@ export default {
           }
         }, this.__getPicker(h, true)),
 
-      this.editable && this.clearable && this.actualValue.length
+      this.isClearable
         ? h('q-icon', {
           slot: 'after',
           props: { name: this.$q.icon.input.clear },
