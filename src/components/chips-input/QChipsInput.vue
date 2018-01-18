@@ -15,7 +15,8 @@
     :before="before"
     :after="after"
     :color="inverted ? frameColor || color : color"
-
+    :clearable="clearable"
+    
     :focused="focused"
     :length="length"
     :additional-length="input.length > 0"

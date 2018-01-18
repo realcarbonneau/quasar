@@ -43,8 +43,19 @@
       ></span>
     </div>
 
-    <q-icon v-if="isClearable" name="this.$q.icon.input.clear" class="q-if-control" @click.native="clear"/>
-    <!-- what do I do with this slot and icon under -->
+    <q-icon v-if="isClearable"
+      name="this.$q.icon.input.clear"
+      class="q-if-control"
+      @mousedown.native="__clearTimer"
+      @touchstart.native="__clearTimer"
+      @click.native="clear"/>
+    <q-icon v-if="dropdown"    
+      name="this.$q.icon.input.dropdown"
+      class="q-if-control" 
+      @mousedown.native="__clearTimer"
+      @touchstart.native="__clearTimer"
+      @click.native="dropdown()"/>
+    
     <slot name="after"></slot>
     <template v-if="after">
       <q-icon

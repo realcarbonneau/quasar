@@ -40,7 +40,7 @@ export default {
     },
     clearValue: null,
     clearable: Boolean,
-    dropdown: Boolean // Or callback
+    dropdown: Boolean  // Add a click callback function parameter if required for scenarios
   },
   computed: {
     labelIsAbove () {
