@@ -38,9 +38,9 @@ export default {
       default: 'left',
       validator: v => ['left', 'center', 'right'].includes(v)
     },
-    clearValue: {
-      default: null
-    }
+    clearValue: null,
+    clearable: Boolean
+    dropdown: Boolean // Or callback
   },
   computed: {
     labelIsAbove () {
@@ -51,6 +51,9 @@ export default {
     },
     editable () {
       return !this.disable && !this.readonly
+    },
+	  isClearable () {
+	    return this.editable && this.clearable && this.actualValue.length
     }
   },
   methods: {

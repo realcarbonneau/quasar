@@ -43,6 +43,8 @@
       ></span>
     </div>
 
+    <q-icon v-if="isClearable" name="this.$q.icon.input.clear" class="q-if-control" @click.native="clear"/>
+    <!-- what do I do with this slot and icon under -->
     <slot name="after"></slot>
     <template v-if="after">
       <q-icon

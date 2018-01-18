@@ -36,7 +36,6 @@ export default {
     },
     displayValue: String,
     placeholder: String,
-    clearable: Boolean,
     okLabel: String,
     cancelLabel: String,
     disable: Boolean,
@@ -96,7 +95,7 @@ export default {
       }
       // Backspace key
       else if (e.which === 8 || e.keyCode === 8) {
-        if (this.editable && this.clearable && this.actualValue.length) {
+        if (this.isClearable) {
           this.clear()
         }
       }
@@ -260,15 +259,6 @@ export default {
             hide: this.__onHide
           }
         }, this.__getPicker(h, true)),
-
-      this.editable && this.clearable && this.actualValue.length
-        ? h('q-icon', {
-          slot: 'after',
-          props: { name: this.$q.icon.input.clear },
-          nativeOn: { click: this.clear },
-          staticClass: 'q-if-control'
-        })
-        : null,
 
       h('q-icon', {
         slot: 'after',

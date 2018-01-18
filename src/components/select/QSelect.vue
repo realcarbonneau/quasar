@@ -52,13 +52,6 @@
       v-html="actualValue"
     ></div>
 
-    <q-icon
-      v-if="!disable && clearable && length"
-      slot="after"
-      name="cancel"
-      class="q-if-control"
-      @click.stop.native="clear"
-    />
     <q-icon slot="after" :name="$q.icon.input.dropdown" class="q-if-control" />
 
     <q-popover
@@ -197,8 +190,8 @@ export default {
     },
     frameColor: String,
     displayValue: String,
-    clearable: Boolean,
-    clearValue: {}
+    // TODO: Check if this is necessary
+    // clearValue: {} // Overrides default value from FrameMixin
   },
   data () {
     return {

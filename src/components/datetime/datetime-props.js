@@ -48,7 +48,6 @@ export const inline = {
 export const input = {
   format: String,
   placeholder: String,
-  clearable: Boolean,
   okLabel: String,
   cancelLabel: String,
   defaultSelection: {
