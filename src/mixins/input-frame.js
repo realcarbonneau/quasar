@@ -39,7 +39,7 @@ export default {
       validator: v => ['left', 'center', 'right'].includes(v)
     },
     clearValue: null,
-    clearable: Boolean
+    clearable: Boolean,
     dropdown: Boolean // Or callback
   },
   computed: {
@@ -52,12 +52,13 @@ export default {
     editable () {
       return !this.disable && !this.readonly
     },
-	  isClearable () {
-	    return this.editable && this.clearable && this.actualValue.length
+    isClearable () {
+      return this.editable && this.clearable && this.actualValue.length
     }
   },
   methods: {
     clear (evt) {
+      debugger
       if (!this.editable) {
         return
       }

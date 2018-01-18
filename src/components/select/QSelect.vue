@@ -189,8 +189,8 @@ export default {
       validator: v => v.every(o => 'label' in o && 'value' in o)
     },
     frameColor: String,
-    displayValue: String,
-    // TODO: Check if this is necessary
+    displayValue: String
+    // TODO: Check if this is necessary to override with empty set
     // clearValue: {} // Overrides default value from FrameMixin
   },
   data () {
@@ -290,7 +290,7 @@ export default {
       }
       // Backspace key
       else if (e.which === 8 || e.keyCode === 8) {
-        if (this.editable && this.clearable && this.actualValue.length) {
+        if (this.isClearable) {
           this.clear()
         }
       }

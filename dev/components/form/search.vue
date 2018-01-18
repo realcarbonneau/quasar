@@ -1,5 +1,6 @@
 <template>
   <div>
+    <q-search @change="onChange" @input="onInput" v-model="search" align="right" suffix="Quasar" style="width: 300px" clearable></q-search>
     <div class="layout-padding">
       <div class="label bg-secondary text-white">
         Model <span class="right-detail"><em>{{stringModel}}</em></span>

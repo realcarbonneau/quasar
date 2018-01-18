@@ -1,5 +1,6 @@
 <template>
   <div>
+    <q-uploader style="max-width: 320px" hide-upload-button no-thumbnails color="amber" :url="url" clearable />
     <div class="layout-padding">
       <q-input v-model="url" />
       <p class="caption">Single File Upload</p>

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <q-chips-input float-label="Clearable" v-model="model" clearable />
     <div class="layout-padding">
       <div class="label bg-secondary text-white">
         Model:

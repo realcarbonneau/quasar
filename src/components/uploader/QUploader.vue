@@ -42,6 +42,7 @@
         slot="after"
         class="q-if-control"
         :name="$q.icon.uploader.clear"
+        // Clearable exception: Abort event! :S
         @click.native="abort"
       ></q-icon>
 
