@@ -48,13 +48,13 @@
       class="q-if-control"
       @mousedown.native="__clearTimer"
       @touchstart.native="__clearTimer"
-      @click.native="clear"/>
+      @click.native="clearClick"/>
     <q-icon v-if="dropdown"    
       name="this.$q.icon.input.dropdown"
       class="q-if-control" 
       @mousedown.native="__clearTimer"
       @touchstart.native="__clearTimer"
-      @click.native="dropdown()"/>
+      @click.native="dropdownClick()"/>
     
     <slot name="after"></slot>
     <template v-if="after">

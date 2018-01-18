@@ -39,8 +39,8 @@ export default {
       validator: v => ['left', 'center', 'right'].includes(v)
     },
     clearValue: null,
-    clearable: Boolean,
-    dropdown: Boolean  // Add a click callback function parameter if required for scenarios
+    clearable: [Boolean, Function],
+    dropdown: [Boolean, Function]
   },
   computed: {
     labelIsAbove () {
@@ -57,7 +57,12 @@ export default {
     }
   },
   methods: {
-    clear (evt) {
+    clearClick () {
+    },
+    dropdownClick () {
+    },
+    // OLD
+    clearOld (evt) {
       debugger
       if (!this.editable) {
         return

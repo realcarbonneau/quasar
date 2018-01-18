@@ -191,7 +191,7 @@ export default {
     frameColor: String,
     displayValue: String
     // TODO: Check if this is necessary to override with empty set
-    // clearValue: {} // Overrides default value from FrameMixin
+    clearValue: {} // Overrides default value from FrameMixin
   },
   data () {
     return {

@@ -15,6 +15,7 @@
     :before="before"
     :after="after"
     :color="color"
+    :clearable="__clearTimer"
 
     :focused="focused"
     :length="length"
