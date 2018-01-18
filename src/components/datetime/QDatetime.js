@@ -206,84 +206,91 @@ export default {
     }
   },
   render (h) {
-    return h(QInputFrame, {
-      props: {
-        prefix: this.prefix,
-        suffix: this.suffix,
-        stackLabel: this.stackLabel,
-        floatLabel: this.floatLabel,
-        error: this.error,
-        warning: this.warning,
-        disable: this.disable,
-        inverted: this.inverted,
-        dark: this.dark,
-        hideUnderline: this.hideUnderline,
-        before: this.before,
-        after: this.after,
-        color: this.color,
+    return h(QInputFrame,
+      {
+        props: {
+          prefix: this.prefix,
+          suffix: this.suffix,
+          stackLabel: this.stackLabel,
+          floatLabel: this.floatLabel,
+          error: this.error,
+          warning: this.warning,
+          disable: this.disable,
+          inverted: this.inverted,
+          dark: this.dark,
+          hideUnderline: this.hideUnderline,
+          before: this.before,
+          after: this.after,
+          color: this.color,
 
-        focused: this.focused,
-        focusable: true,
-        length: this.actualValue.length
-      },
-      nativeOn: {
-        click: this.toggle,
-        focus: this.__onFocus,
-        blur: this.__onBlur,
-        keydown: this.__handleKey
-      }
-    }, [
-      h('div', {
-        staticClass: 'col row items-center q-input-target',
-        'class': this.alignClass,
-        domProps: {
-          innerHTML: this.actualValue
+          focused: this.focused,
+          focusable: true,
+          length: this.actualValue.length
+        },
+        nativeOn: {
+          click: this.toggle,
+          focus: this.__onFocus,
+          blur: this.__onBlur,
+          keydown: this.__handleKey
         }
-      }),
-
-      this.isPopover
-        ? h(QPopover, {
-          ref: 'popup',
-          props: {
-            offset: [0, 10],
-            disable: this.disable,
-            anchorClick: false,
-            maxHeight: '100vh'
-          },
-          on: {
-            show: this.__onFocus,
-            hide: this.__onHide
+      }, [
+        h('div', {
+          staticClass: 'col row items-center q-input-target',
+          'class': this.alignClass,
+          domProps: {
+            innerHTML: this.actualValue
           }
-        }, this.__getPicker(h))
-        : h(QModal, {
-          ref: 'popup',
-          staticClass: 'with-backdrop',
-          props: {
-            contentCss,
-            minimized: __THEME__ === 'mat',
-            position: __THEME__ === 'ios' ? 'bottom' : null,
-            transition: this.transition
-          },
-          on: {
-            show: this.__onFocus,
-            hide: this.__onHide
-          }
-        }, this.__getPicker(h, true)),
+        }),
 
-      this.isClearable
-        ? h('q-icon', {
-          slot: 'after',
-          props: { name: this.$q.icon.input.clear },
-          nativeOn: { click: this.clear },
-          staticClass: 'q-if-control'
-        })
-        : null,
+        this.isPopover
+          ? h(QPopover,
+            {
+              ref: 'popup',
+              props: {
+                offset: [0, 10],
+                disable: this.disable,
+                anchorClick: false,
+                maxHeight: '100vh'
+              },
+              on: {
+                show: this.__onFocus,
+                hide: this.__onHide
+              }
+            }, this.__getPicker(h)
+          )
+          : h(QModal,
+            {
+              ref: 'popup',
+              staticClass: 'with-backdrop',
+              props: {
+                contentCss,
+                minimized: __THEME__ === 'mat',
+                position: __THEME__ === 'ios' ? 'bottom' : null,
+                transition: this.transition
+              },
+              on: {
+                show: this.__onFocus,
+                hide: this.__onHide
+              }
+            }, this.__getPicker(h, true)
+          ),
 
-      h('q-icon', {
-        slot: 'after',
-        props: { name: this.$q.icon.input.dropdown },
-        staticClass: 'q-if-control'
-      })
-    ])
+        this.editable && this.clearable && this.actualValue.length
+          ? h('q-icon', {
+            slot: 'after',
+            props: { name: this.$q.icon.input.clear },
+            nativeOn: { click: this.clear },
+            staticClass: 'q-if-control'
+          })
+          : null,
+
+        this.editable && this.clearable && this.actualValue.length
+          ? h('q-icon', {
+            slot: 'after',
+            props: { name: this.$q.icon.input.dropdown },
+            staticClass: 'q-if-control'
+          }) : null
+      ]
+    )
   }
 }
