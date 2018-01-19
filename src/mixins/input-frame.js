@@ -40,7 +40,9 @@ export default {
     },
     clearValue: {
       default: null
-    }
+    },
+    // Unbind the v-model two-way binding until blur, this is reactive, so it can be activated/deactivated at any time.
+    unbindModel: Boolean
   },
   computed: {
     labelIsAbove () {
