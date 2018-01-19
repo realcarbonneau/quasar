@@ -39,8 +39,8 @@ export default {
       validator: v => ['left', 'center', 'right'].includes(v)
     },
     clearValue: null,
-    clearable: [Boolean, Function],
-    dropdown: [Boolean, Function]
+    clearable: Boolean,
+    dropdown: Boolean
   },
   computed: {
     labelIsAbove () {

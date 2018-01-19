@@ -15,7 +15,7 @@
     :before="before"
     :after="after"
     :color="color"
-    :clearable="__clearTimer"
+    :clearable="clearable"
 
     :focused="focused"
     :length="length"
@@ -228,6 +228,9 @@ export default {
     },
     actualStep () {
       return this.step || (this.maxDecimals ? 10 ** -this.maxDecimals : 'any')
+    },
+    computedClearValue () {
+      return this.isNumber ? 0 : ''
     }
   },
   methods: {
@@ -249,6 +252,7 @@ export default {
     __setModel (val) {
       clearTimeout(this.timer)
       this.focus()
+      // This can be done simpler
       this.__set(val || (this.isNumber ? null : ''))
     },
     __set (e) {
