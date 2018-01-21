@@ -50,12 +50,17 @@ export default new VueRouter({
   // mode: 'history',
   routes,
   scrollBehavior (to, from, savedPosition) {
+    let position = { x: 0, y: 0 }
     // Keep scroll position when using browser buttons
     if (savedPosition) {
-      return savedPosition
+      position = savedPosition
     }
-    else {
-      return { x: 0, y: 0 }
-    }
+
+    // Workaround for transitions scrolling to the top of the page
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(position)
+      }, 500)
+    })
   }
 })
