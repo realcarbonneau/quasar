@@ -57,10 +57,11 @@ export default new VueRouter({
     }
 
     // Workaround for transitions scrolling to the top of the page
+    // However, there are still some problems being fixed by the vue team
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve(position)
-      }, 500)
+      }, 1000)
     })
   }
 })

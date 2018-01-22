@@ -1,7 +1,7 @@
 <template>
   <div class="q-app">
     <!-- transition cause scroll back to the top before transition. -->
-    <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut" mode="out-in" :duration="300">
+    <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut" mode="out-in" :duration="500">
       <keep-alive>
         <router-view></router-view>
       </keep-alive>
