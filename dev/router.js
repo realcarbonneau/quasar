@@ -48,7 +48,8 @@ routes.push({path: '*', component: load('error404')})
 
 export default new VueRouter({
   // mode: 'history',
-  routes,
+  routes // ,
+  /*
   scrollBehavior (to, from, savedPosition) {
     let position = { x: 0, y: 0 }
     // Keep scroll position when using browser buttons
@@ -64,4 +65,16 @@ export default new VueRouter({
       }, 1000)
     })
   }
+  */
+  /*
+  scrollBehavior (to, from, savedPosition) {
+    if (savedPosition) {
+      // Keep scroll position when using browser buttons
+      return savedPosition
+    }
+    else {
+      return { x: 0, y: 0 }
+    }
+  }
+  */
 })
