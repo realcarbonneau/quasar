@@ -6,7 +6,8 @@ export default {
     mat: String,
     ios: String,
     color: String,
-    size: String
+    size: String,
+    class: String
   },
   render (h, ctx) {
     let icon = ctx.props.mat && __THEME__ === 'mat'
@@ -34,12 +35,6 @@ export default {
     else if (icon.startsWith('ion-') || icon.startsWith('icon-')) {
       cls = `${icon}`
     }
-    else if (icon.startsWith('ion4-')) {
-      if (!ctx.children) {
-        ctx.children = []
-      }
-      ctx.children.push(h('ion-icon', {attrs: {name: icon.substr(5)}}))
-    }
     else if (icon.startsWith('mdi-')) {
       cls = `mdi ${icon}`
     }
@@ -58,8 +53,9 @@ export default {
     let style = ctx.props.size ? { fontSize: ctx.props.size } : undefined
 
     return h('i', {
-      staticClass: 'q-icon',
+      staticClass: `q-icon ${ctx.data.staticClass}`,
       'class': classes,
+      staticStyle: ctx.data.staticStyle,
       style: style,
       attrs: { 'aria-hidden': true }
     }, [
